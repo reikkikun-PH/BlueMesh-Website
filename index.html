@@ -26,7 +26,14 @@
     <nav id="navbar">
         <div class="nav-container">
             <!-- Logo -->
-            <a href="#" class="nav-logo"><span>BlueMesh</span></a>
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(59,130,246,0.5));">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span>BlueMesh</span>
+            </a>
 
             <!-- Navigation Links -->
             <div class="nav-links" id="nav-links">
@@ -101,36 +108,79 @@
             <div class="features-grid">
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </div>
                     <h3>BLE Mesh Networking</h3>
                     <p>Decentralized device-to-device communication using Bluetooth Low Energy. Messages hop between
                         nearby devices, extending reach up to 300 meters per hop.</p>
                 </div>
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </div>
                     <h3>Solar-Powered Nodes</h3>
                     <p>Relay nodes are powered by solar panels, ensuring uninterrupted operation during grid outages and
                         power failures. Self-sustaining energy for 24/7 resilience.</p>
                 </div>
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5l14 14M17 17H5a5 5 0 0 1-1.09-9.88"></path>
+                        </svg>
+                    </div>
                     <h3>No Internet Required</h3>
                     <p>Works completely offline via Bluetooth. Designed for typhoons, power outages, remote barangays,
                         and areas where cellular infrastructure is unavailable.</p>
                 </div>
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                    </div>
                     <h3>Android Mobile App</h3>
                     <p>A user-friendly Android application for real-time, low-latency text messaging. Just open and
                         start communicating with nearby users instantly.</p>
                 </div>
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
                     <h3>Weatherproof Hardware</h3>
                     <p>Relay nodes are housed in weatherproof enclosures designed to withstand harsh Philippine weather
                         — including typhoons, heavy rain, and extreme heat.</p>
                 </div>
 
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
                     <h3>Disaster Resilient</h3>
                     <p>Purpose-built for emergency and disaster response. When typhoons knock out cell towers and power
                         grids, BlueMesh keeps your community connected.</p>
@@ -212,10 +262,10 @@
 
                     <!-- Key highlights list -->
                     <ul class="highlights-list">
-                        <li>✓ Infrastructure-independent messaging</li>
-                        <li>✓ Free — no cellular data or internet costs</li>
-                        <li>✓ Private — no data collection or tracking</li>
-                        <li>✓ Disaster-ready — typhoon and outage resilient</li>
+                        <li>Infrastructure-independent messaging</li>
+                        <li>Free — no cellular data or internet costs</li>
+                        <li>Private — no data collection or tracking</li>
+                        <li>Disaster-ready — typhoon and outage resilient</li>
                     </ul>
                 </div>
 
@@ -318,7 +368,10 @@
                     <!-- Android download -->
                     <a href="https://github.com/reikkikun-PH/BlueMesh/releases/download/v26.2/BlueMesh-v26.2.apk"
                         class="download-card" id="download-android">
-                        <div class="download-info" style="text-align: center; width: 100%;">
+                        <svg class="download-svg" viewBox="0 0 24 24" style="width: 32px; height: 32px; fill: currentColor; flex-shrink: 0;">
+                            <path d="M17.523 15.3c-.383 0-.692-.31-.692-.695c0-.383.31-.693.692-.693c.383 0 .693.31.693.693c0 .385-.31.695-.693.695zm-11.046 0c-.383 0-.693-.31-.693-.695c0-.383.31-.693.693-.693c.383 0 .693.31.693.693c0 .385-.31.695-.693.695zm11.24-4.577l1.797-3.114a.449.449 0 0 0-.164-.614a.453.453 0 0 0-.617.164l-1.82 3.15a11.096 11.096 0 0 0-9.826 0l-1.82-3.15a.456.456 0 0 0-.78.45l1.796 3.114A11.353 11.353 0 0 0 1.25 20h21.5c0-3.565-1.688-6.733-4.32-8.79z"></path>
+                        </svg>
+                        <div class="download-info">
                             <span class="download-label">Download for</span>
                             <span class="download-platform">Android</span>
                             <span class="download-meta">APK • v26.2</span>
@@ -337,7 +390,14 @@
             <div class="footer-top">
                 <!-- Brand description -->
                 <div class="footer-brand">
-                    <strong>BlueMesh</strong>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                        <strong>BlueMesh</strong>
+                    </div>
                     <p>Solar-powered mesh communication for Philippine barangay communities.</p>
                 </div>
 

@@ -421,6 +421,28 @@ section {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 25px rgba(59, 130, 246, 0.1);
 }
 
+.feature-icon {
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  color: var(--cyan);
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 .feature-card h3 {
   font-size: 1.15rem;
@@ -530,11 +552,22 @@ section {
   color: var(--text-white);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 10px 14px;
   border-radius: 12px;
+}
+
+.highlights-list li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan);
+  flex-shrink: 0;
 }
 
 .tech-card {
