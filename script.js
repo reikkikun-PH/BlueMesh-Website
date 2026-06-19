@@ -131,5 +131,39 @@ function fetchLatestRelease() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', fetchLatestRelease);
+/* --- Interactive App Guide --- */
+function initAppGuide() {
+  var tabs = document.querySelectorAll('.guide-tab');
+  var screens = document.querySelectorAll('.app-screen');
+
+  if (tabs.length === 0 || screens.length === 0) return;
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var targetScreenId = 'screen-' + tab.getAttribute('data-screen');
+
+      // Remove active class from all tabs
+      tabs.forEach(function (t) {
+        t.classList.remove('active');
+      });
+
+      // Remove active class from all screens
+      screens.forEach(function (s) {
+        s.classList.remove('active');
+      });
+
+      // Add active class to clicked tab and target screen
+      tab.classList.add('active');
+      var targetScreen = document.getElementById(targetScreenId);
+      if (targetScreen) {
+        targetScreen.classList.add('active');
+      }
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  fetchLatestRelease();
+  initAppGuide();
+});
 
