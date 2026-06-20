@@ -133,39 +133,6 @@ function fetchLatestRelease() {
 
 /* --- Interactive App Guide --- */
 function initAppGuide() {
-  var tabs = document.querySelectorAll('.guide-tab');
-  var screens = document.querySelectorAll('.app-screen');
-
-  if (tabs.length === 0 || screens.length === 0) return;
-
-  // --- Tab Switching ---
-  function switchToTab(screenName) {
-    var targetScreenId = 'screen-' + screenName;
-    tabs.forEach(function (t) { t.classList.remove('active'); });
-    screens.forEach(function (s) { s.classList.remove('active'); });
-
-    // Find and activate the matching tab
-    tabs.forEach(function (t) {
-      if (t.getAttribute('data-screen') === screenName) {
-        t.classList.add('active');
-      }
-    });
-
-    var targetScreen = document.getElementById(targetScreenId);
-    if (targetScreen) {
-      targetScreen.classList.add('active');
-    }
-
-    // Trigger screen-specific effects
-    if (screenName === 'discovery') { triggerDiscoveryScan(); }
-  }
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      switchToTab(tab.getAttribute('data-screen'));
-    });
-  });
-
   // --- PIN Pad Logic ---
   var pinEntry = [];
   var pinDots = document.querySelectorAll('#pin-indicator .pin-dot');
@@ -228,25 +195,22 @@ function initAppGuide() {
       pinStatus.textContent = '✓ Unlocked';
       pinStatus.className = 'pin-status success';
     }
-    // Transition to Peer Discovery after a brief pause
+    // Pause, then reset so user can interact with it again
     setTimeout(function () {
-      switchToTab('discovery');
-      // Reset PIN after transition
-      setTimeout(function () {
-        pinEntry = [];
-        pinLocked = false;
-        updatePinDots();
-        if (pinStatus) {
-          pinStatus.textContent = '';
-          pinStatus.className = 'pin-status';
-        }
-      }, 800);
-    }, 1200);
+      pinEntry = [];
+      pinLocked = false;
+      updatePinDots();
+      if (pinStatus) {
+        pinStatus.textContent = '';
+        pinStatus.className = 'pin-status';
+      }
+    }, 1500);
   }
 
   // --- Discovery Scan Simulation ---
   var discoveryOverlay = document.getElementById('discovery-overlay');
   var peerList = document.getElementById('peer-list');
+  var scanTriggerBtn = document.getElementById('scan-trigger-btn');
 
   function triggerDiscoveryScan() {
     if (!discoveryOverlay || !peerList) return;
@@ -262,6 +226,10 @@ function initAppGuide() {
         peerList.classList.remove('loading');
       }, 50);
     }, 1400);
+  }
+
+  if (scanTriggerBtn) {
+    scanTriggerBtn.addEventListener('click', triggerDiscoveryScan);
   }
 
   // --- Chat Input Logic ---
@@ -302,7 +270,7 @@ function initAppGuide() {
       var replyText = replyMessages[replyIndex % replyMessages.length];
       replyIndex++;
       reply.innerHTML =
-        '<small style="font-size: 0.6rem; color: var(--cyan); display: block; margin-bottom: 2px;">[Relay Node Boost]</small>' +
+        '<small style="font-size: 0.55rem; color: var(--cyan); display: block; margin-bottom: 2px;">[Relay Node Boost]</small>' +
         replyText +
         '<span class="bubble-time">' + timeStr + '</span>';
       chatContent.appendChild(reply);

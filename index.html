@@ -91,6 +91,52 @@
                 </div>
             </div>
         </div>
+
+        <!-- Hero visual mesh connection diagram (pure CSS) -->
+        <div class="hero-visual">
+            <div class="mesh-container">
+                <!-- Node 1 (Central Solar Hub) -->
+                <div class="node hub">
+                    <div class="node-pulse"></div>
+                    <svg viewBox="0 0 24 24" class="node-svg">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </div>
+                <!-- Node 2 (Phone) -->
+                <div class="node client-1">
+                    <div class="node-pulse"></div>
+                    <svg viewBox="0 0 24 24" class="node-svg">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                </div>
+                <!-- Node 3 (Relay Node) -->
+                <div class="node client-2">
+                    <div class="node-pulse"></div>
+                    <svg viewBox="0 0 24 24" class="node-svg">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                </div>
+                <!-- Connecting Signal Lines -->
+                <svg class="mesh-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <line x1="18" y1="75" x2="50" y2="20" class="signal-line"></line>
+                    <line x1="50" y1="20" x2="82" y2="70" class="signal-line"></line>
+                    <line x1="18" y1="75" x2="82" y2="70" class="signal-line-dashed"></line>
+                </svg>
+            </div>
+        </div>
     </section>
 
 
@@ -248,194 +294,189 @@
             <div class="section-header">
                 <span class="section-tag">App Guide</span>
                 <h2>Explore the <span class="gradient-text">BlueMesh Interface</span></h2>
-                <p>Learn how to navigate the native Android app. Click on the steps below to see the corresponding interface screens.</p>
+                <p>Interact with the live guide cards below to see how each core offline feature of the BlueMesh application works.</p>
             </div>
 
-            <div class="guide-grid">
-                <!-- Left: Guide Steps Tabs -->
-                <div class="guide-steps">
-                    <button class="guide-tab active" data-screen="pin-lock">
-                        <div class="tab-number">01</div>
-                        <div class="tab-text">
-                            <h3>Secure PIN Entry</h3>
-                            <p>Enter your 4-digit passcode on launch. Keeps local messaging records encrypted and private.</p>
+            <div class="guide-cards-grid">
+                <!-- Card 1: Secure PIN Lock -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <span class="guide-card-number">01</span>
+                        <div class="guide-card-title-group">
+                            <h3>Secure PIN Lock</h3>
+                            <p>Enforces device-level database encryption and secure auto-lock to protect offline logs.</p>
                         </div>
-                    </button>
-                    <button class="guide-tab" data-screen="discovery">
-                        <div class="tab-number">02</div>
-                        <div class="tab-text">
-                            <h3>Peer Discovery</h3>
-                            <p>Scan for nearby Bluetooth mesh nodes. Connections form automatically without central servers.</p>
+                    </div>
+                    <div class="app-simulator">
+                        <div class="app-header-bar">
+                            <span>12:00</span>
+                            <span>📶🔋</span>
                         </div>
-                    </button>
-                    <button class="guide-tab" data-screen="chat">
-                        <div class="tab-number">03</div>
-                        <div class="tab-text">
-                            <h3>P2P Offline Chat</h3>
-                            <p>Send text messages that hop through relays. Uses SQLite for buffering and LZ4 for compression.</p>
+                        <div class="app-content-area pin-screen-content">
+                            <div class="app-brand-logo" style="margin-top: 8px;">
+                                <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(59,130,246,0.5));">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                            <h4 style="margin-top: 8px; font-size: 0.85rem; font-weight: 700; color: var(--text-white);">BlueMesh Encrypted</h4>
+                            <p style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 12px;">Enter PIN to Unlock</p>
+                            
+                            <div class="pin-indicator" id="pin-indicator">
+                                <span class="pin-dot"></span>
+                                <span class="pin-dot"></span>
+                                <span class="pin-dot"></span>
+                                <span class="pin-dot"></span>
+                            </div>
+                            <div class="pin-status" id="pin-status"></div>
+                            
+                            <div class="pin-pad">
+                                <span>1</span><span>2</span><span>3</span>
+                                <span>4</span><span>5</span><span>6</span>
+                                <span>7</span><span>8</span><span>9</span>
+                                <span>C</span><span>0</span><span>✓</span>
+                            </div>
                         </div>
-                    </button>
-                    <button class="guide-tab" data-screen="proximity">
-                        <div class="tab-number">04</div>
-                        <div class="tab-text">
-                            <h3>Proximity &amp; Location</h3>
-                            <p>Monitor physical distance to nearby nodes and share emergency GPS coordinates if opted-in.</p>
-                        </div>
-                    </button>
+                    </div>
                 </div>
 
-                <!-- Right: Phone Mockup Frame and App Screens -->
-                <div class="phone-mockup-wrapper">
-                    <div class="phone-mockup">
-                        <div class="phone-speaker"></div>
-                        <div class="phone-screen">
+                <!-- Card 2: Peer Discovery -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <span class="guide-card-number">02</span>
+                        <div class="guide-card-title-group">
+                            <h3>Peer Discovery</h3>
+                            <p>Scans and builds a local offline mesh network map automatically using Bluetooth Low Energy.</p>
+                        </div>
+                    </div>
+                    <div class="app-simulator">
+                        <div class="app-header-bar">
+                            <span>12:00</span>
+                            <span style="color: var(--cyan); font-size: 0.65rem; font-weight: bold;">BLE Active</span>
+                        </div>
+                        <div class="app-nav-bar-mock">
+                            <span style="font-weight: 700; font-size: 0.8rem;">Peers list</span>
+                            <span style="font-size: 0.7rem; opacity: 0.7;">3 Online</span>
+                        </div>
+                        <!-- Scan overlay -->
+                        <div class="discovery-scan-overlay" id="discovery-overlay">
+                            <div class="scan-spinner"></div>
+                            <span>Scanning for nearby nodes...</span>
+                        </div>
+                        <div class="app-content-area list-screen-content" id="peer-list">
+                            <div class="peer-item active">
+                                <div class="peer-avatar">JA</div>
+                                <div class="peer-details">
+                                    <strong>@anon5473 (Jemar)</strong>
+                                    <small>Proximity: 12m • Signal: Strong</small>
+                                </div>
+                                <span class="status-dot online"></span>
+                            </div>
+                            <div class="peer-item active">
+                                <div class="peer-avatar">RA</div>
+                                <div class="peer-details">
+                                    <strong>@anon1152 (Roselle)</strong>
+                                    <small>Proximity: 45m • Relay Active</small>
+                                </div>
+                                <span class="status-dot online"></span>
+                            </div>
+                            <div class="peer-item">
+                                <div class="peer-avatar">RC</div>
+                                <div class="peer-details">
+                                    <strong>@anon7359 (Ricky)</strong>
+                                    <small>Proximity: 120m • Connecting...</small>
+                                </div>
+                                <span class="status-dot connecting"></span>
+                            </div>
+                        </div>
+                        <button class="scan-trigger-btn" id="scan-trigger-btn">Scan for Peers</button>
+                    </div>
+                </div>
+
+                <!-- Card 3: P2P Offline Chat -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <span class="guide-card-number">03</span>
+                        <div class="guide-card-title-group">
+                            <h3>P2P Offline Chat</h3>
+                            <p>Send and receive compressed messages that relay through other mesh nodes without cellular data.</p>
+                        </div>
+                    </div>
+                    <div class="app-simulator">
+                        <div class="app-header-bar">
+                            <span>12:00</span>
+                            <span>📶🔋</span>
+                        </div>
+                        <div class="app-nav-bar-mock chat-nav">
+                            <span style="font-size: 0.8rem;">💬 @anon5473</span>
+                            <span style="font-size: 0.6rem; color: var(--cyan);">BLE Connected</span>
+                        </div>
+                        <div class="app-content-area chat-screen-content">
+                            <div class="chat-bubble left">
+                                How are you today?
+                                <span class="bubble-time">11:58 AM</span>
+                            </div>
+                            <div class="chat-bubble right">
+                                Hello! Testing the offline relay connection.
+                                <span class="bubble-time">11:59 AM</span>
+                            </div>
+                            <div class="chat-bubble left relay-msg">
+                                <small style="font-size: 0.55rem; color: var(--cyan); display: block; margin-bottom: 2px;">[Relay Node Boost]</small>
+                                Hello from Jemar, signal boosted successfully!
+                                <span class="bubble-time">12:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="app-input-mock" id="chat-input-bar">
+                            <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
+                            <button class="send-btn-mock" id="chat-send-btn">➔</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Proximity & Location -->
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <span class="guide-card-number">04</span>
+                        <div class="guide-card-title-group">
+                            <h3>Proximity & Location</h3>
+                            <p>Monitor physical distance to nearby nodes and broadcast emergency GPS coordinates offline.</p>
+                        </div>
+                    </div>
+                    <div class="app-simulator">
+                        <div class="app-header-bar">
+                            <span>12:00</span>
+                            <span>📶🔋</span>
+                        </div>
+                        <div class="app-nav-bar-mock">
+                            <span style="font-weight: 700; font-size: 0.8rem;">Mesh Proximity</span>
+                        </div>
+                        <div class="app-content-area proximity-screen-content">
+                            <div class="radar-container">
+                                <div class="radar-circle circle-1"></div>
+                                <div class="radar-circle circle-2"></div>
+                                <div class="radar-circle circle-3"></div>
+                                <div class="radar-sweep"></div>
+                                <div class="radar-node node-center"></div>
+                                <div class="radar-node node-p1"></div>
+                                <div class="radar-node node-p2"></div>
+                            </div>
                             
-                            <!-- Screen 1: PIN Entry -->
-                            <div class="app-screen active" id="screen-pin-lock">
-                                <div class="app-header-bar">
-                                    <span>12:00</span>
-                                    <span>📶🔋</span>
-                                </div>
-                                <div class="app-content-area pin-screen-content">
-                                    <div class="app-brand-logo" style="margin-top: 16px;">
-                                        <svg viewBox="0 0 24 24" style="width: 32px; height: 32px; fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(59,130,246,0.5));">
-                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                            <polyline points="2 17 12 22 22 17"></polyline>
-                                            <polyline points="2 12 12 17 22 12"></polyline>
-                                        </svg>
-                                    </div>
-                                    <h4 style="margin-top: 12px; font-weight: 700; color: var(--text-white);">BlueMesh Encrypted</h4>
-                                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 24px;">Enter PIN to Unlock</p>
-                                    
-                                    <div class="pin-indicator" id="pin-indicator">
-                                        <span class="pin-dot"></span>
-                                        <span class="pin-dot"></span>
-                                        <span class="pin-dot"></span>
-                                        <span class="pin-dot"></span>
-                                    </div>
-                                    <div class="pin-status" id="pin-status"></div>
-                                    
-                                    <div class="pin-pad">
-                                        <span>1</span><span>2</span><span>3</span>
-                                        <span>4</span><span>5</span><span>6</span>
-                                        <span>7</span><span>8</span><span>9</span>
-                                        <span>C</span><span>0</span><span>✓</span>
-                                    </div>
+                            <div class="location-box-mock">
+                                <strong>My Location Coordinates</strong>
+                                <p style="font-size: 0.65rem;">Lat: 14.5995° N | Lng: 121.0365° E</p>
+                                <small style="color: var(--cyan); font-size: 0.55rem;">✓ Opt-in GPS Sharing Enabled</small>
+                                <button class="sos-btn" id="sos-btn">SOS Alert</button>
+                            </div>
+                            <!-- SOS Overlay -->
+                            <div class="sos-overlay" id="sos-overlay">
+                                <div class="sos-content">
+                                    <span class="sos-icon">⚠</span>
+                                    <strong>Emergency SOS Active!</strong>
+                                    <p>Transmitting coordinates to all nearby mesh nodes...</p>
+                                    <button class="sos-dismiss" id="sos-dismiss">Dismiss</button>
                                 </div>
                             </div>
-
-                            <!-- Screen 2: Peer Discovery -->
-                            <div class="app-screen" id="screen-discovery">
-                                <div class="app-header-bar">
-                                    <span>12:00</span>
-                                    <span style="color: var(--cyan); font-size: 0.7rem; font-weight: bold;">Scanning...</span>
-                                </div>
-                                <div class="app-nav-bar-mock">
-                                    <span style="font-weight: 700; font-size: 0.9rem;">Peers list</span>
-                                    <span style="font-size: 0.8rem; opacity: 0.7;">3 Online</span>
-                                </div>
-                                <!-- Scan overlay -->
-                                <div class="discovery-scan-overlay" id="discovery-overlay">
-                                    <div class="scan-spinner"></div>
-                                    <span>Scanning for nearby nodes...</span>
-                                </div>
-                                <div class="app-content-area list-screen-content" id="peer-list">
-                                    <div class="peer-item active">
-                                        <div class="peer-avatar">JA</div>
-                                        <div class="peer-details">
-                                            <strong>@anon5473 (Jemar)</strong>
-                                            <small>Proximity: 12m • Signal: Strong</small>
-                                        </div>
-                                        <span class="status-dot online"></span>
-                                    </div>
-                                    <div class="peer-item active">
-                                        <div class="peer-avatar">RA</div>
-                                        <div class="peer-details">
-                                            <strong>@anon1152 (Roselle)</strong>
-                                            <small>Proximity: 45m • Relay Active</small>
-                                        </div>
-                                        <span class="status-dot online"></span>
-                                    </div>
-                                    <div class="peer-item">
-                                        <div class="peer-avatar">RC</div>
-                                        <div class="peer-details">
-                                            <strong>@anon7359 (Ricky)</strong>
-                                            <small>Proximity: 120m • Connecting...</small>
-                                        </div>
-                                        <span class="status-dot connecting"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Screen 3: Chat Room -->
-                            <div class="app-screen" id="screen-chat">
-                                <div class="app-header-bar">
-                                    <span>12:00</span>
-                                    <span>📶🔋</span>
-                                </div>
-                                <div class="app-nav-bar-mock chat-nav">
-                                    <span>💬 @anon5473</span>
-                                    <span style="font-size: 0.65rem; color: var(--cyan);">BLE Mesh Connected</span>
-                                </div>
-                                <div class="app-content-area chat-screen-content">
-                                    <div class="chat-bubble left">
-                                        How are you today?
-                                        <span class="bubble-time">11:58 AM</span>
-                                    </div>
-                                    <div class="chat-bubble right">
-                                        Hello! Testing the offline relay connection.
-                                        <span class="bubble-time">11:59 AM</span>
-                                    </div>
-                                    <div class="chat-bubble left relay-msg">
-                                        <small style="font-size: 0.6rem; color: var(--cyan); display: block; margin-bottom: 2px;">[Relay Node Boost]</small>
-                                        Hello from Jemar, signal boosted successfully!
-                                        <span class="bubble-time">12:00 PM</span>
-                                    </div>
-                                </div>
-                                <div class="app-input-mock" id="chat-input-bar">
-                                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" />
-                                    <button class="send-btn-mock" id="chat-send-btn">➔</button>
-                                </div>
-                            </div>
-
-                            <!-- Screen 4: Proximity & Location -->
-                            <div class="app-screen" id="screen-proximity">
-                                <div class="app-header-bar">
-                                    <span>12:00</span>
-                                    <span>📶🔋</span>
-                                </div>
-                                <div class="app-nav-bar-mock">
-                                    <span style="font-weight: 700; font-size: 0.9rem;">Mesh Proximity</span>
-                                </div>
-                                <div class="app-content-area proximity-screen-content">
-                                    <div class="radar-container">
-                                        <div class="radar-circle circle-1"></div>
-                                        <div class="radar-circle circle-2"></div>
-                                        <div class="radar-circle circle-3"></div>
-                                        <div class="radar-sweep"></div>
-                                        <div class="radar-node node-center"></div>
-                                        <div class="radar-node node-p1"></div>
-                                        <div class="radar-node node-p2"></div>
-                                    </div>
-                                    
-                                    <div class="location-box-mock">
-                                        <strong>My Location Coordinates</strong>
-                                        <p>Lat: 14.5995° N | Lng: 121.0365° E</p>
-                                        <small style="color: var(--cyan);">✓ Opt-in GPS Sharing Enabled</small>
-                                        <button class="sos-btn" id="sos-btn">SOS Alert</button>
-                                    </div>
-                                    <!-- SOS Overlay -->
-                                    <div class="sos-overlay" id="sos-overlay">
-                                        <div class="sos-content">
-                                            <span class="sos-icon">⚠</span>
-                                            <strong>Emergency SOS Broadcast Active!</strong>
-                                            <p>Transmitting coordinates to all nearby mesh nodes...</p>
-                                            <button class="sos-dismiss" id="sos-dismiss">Dismiss</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

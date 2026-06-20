@@ -292,29 +292,28 @@ section {
 }
 
 /* ==========================================================================
-   6. CENTERED HERO SECTION
+   6. BALANCED 2-COLUMN HERO SECTION
    ========================================================================== */
 
 #hero {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
   padding: 120px 24px 80px;
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
-  gap: 0;
+  gap: 60px;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   width: 100%;
-  max-width: 700px;
+  max-width: 580px;
 }
 
 .hero-badge {
@@ -354,25 +353,25 @@ section {
   display: flex;
   gap: 16px;
   margin-bottom: 48px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .hero-stats {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 48px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: 20px 0;
   width: 100%;
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .stat-number {
@@ -388,6 +387,116 @@ section {
   letter-spacing: 0.08em;
   margin-top: 4px;
   font-weight: 600;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+}
+
+.mesh-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.node {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(13, 20, 35, 0.8);
+  border: 1px solid var(--border-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+.node.hub {
+  top: 10%;
+  left: 42%;
+  width: 60px;
+  height: 60px;
+  color: var(--blue);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+}
+
+.node.client-1 {
+  bottom: 15%;
+  left: 10%;
+}
+
+.node.client-2 {
+  bottom: 20%;
+  right: 10%;
+}
+
+.node-svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.node.hub .node-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.node-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.8;
+  animation: pulse 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.mesh-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.signal-line {
+  stroke: rgba(59, 130, 246, 0.35);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.signal-line-dashed {
+  stroke: rgba(6, 182, 212, 0.25);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
 }
 
 
@@ -960,146 +1069,105 @@ section {
    11. INTERACTIVE APP GUIDE SECTION
    ========================================================================== */
 
+/* ==========================================================================
+   11. INTERACTIVE APP GUIDE SECTION (GRID OF CARDS)
+   ========================================================================== */
+
 #app-guide {
-  overflow: hidden;
   position: relative;
 }
 
-.guide-grid {
+.guide-cards-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 48px;
-  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
 }
 
-.guide-steps {
+.guide-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
+  transition: var(--transition);
 }
 
-.guide-tab {
+.guide-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 
+              0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+.guide-card-header {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  text-align: left;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px;
-  cursor: pointer;
-  transition: var(--transition);
-  outline: none;
-  width: 100%;
 }
 
-.guide-tab:hover {
-  border-color: var(--border-hover);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-.guide-tab.active {
-  border-color: var(--blue);
-  background: rgba(13, 20, 35, 0.7);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
-}
-
-.tab-number {
+.guide-card-number {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 800;
-  color: var(--text-muted);
-  transition: var(--transition);
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
   line-height: 1;
 }
 
-.guide-tab.active .tab-number {
-  color: var(--cyan);
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-}
-
-.tab-text h3 {
+.guide-card-title-group h3 {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 6px;
   color: var(--text-white);
-  transition: var(--transition);
+  margin-bottom: 6px;
 }
 
-.guide-tab.active .tab-text h3 {
-  color: var(--blue);
-}
-
-.tab-text p {
+.guide-card-title-group p {
   font-size: 0.88rem;
   color: var(--text-gray);
   line-height: 1.5;
 }
 
-.phone-mockup-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.phone-mockup {
-  width: 290px;
-  height: 580px;
-  background: #090d16;
-  border: 8px solid #1e293b;
-  border-radius: 36px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
-              0 0 30px rgba(59, 130, 246, 0.1);
-}
-
-.phone-speaker {
-  width: 60px;
-  height: 5px;
-  background: #1e293b;
-  border-radius: 3px;
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.phone-screen {
+.app-simulator {
   width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+  height: 350px;
   background: #070a13;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8),
+              0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.app-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transform: scale(0.96);
-  z-index: 1;
-  padding-top: 24px;
+.scan-trigger-btn {
+  display: block;
+  width: calc(100% - 28px);
+  margin: 14px;
+  padding: 10px 0;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 8px;
+  color: var(--cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: auto;
 }
 
-.app-screen.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-  z-index: 2;
+.scan-trigger-btn:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
 }
 
 .app-header-bar {
@@ -1712,7 +1780,25 @@ section {
   }
 
   #hero {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
     padding-top: 110px;
+    gap: 48px;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .features-grid {
@@ -1753,13 +1839,9 @@ section {
     width: 100%;
   }
 
-  .guide-grid {
+  .guide-cards-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .phone-mockup-wrapper {
-    margin-top: 12px;
+    gap: 24px;
   }
 }
 
@@ -1831,11 +1913,21 @@ section {
 
   .hero-actions {
     flex-direction: column;
+    width: 100%;
     max-width: 300px;
+    align-items: center;
   }
 
   .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
+  }
+  
+  .stat {
+    flex: 1 1 40%;
+    align-items: center;
   }
 
   .footer-links {
@@ -1856,21 +1948,25 @@ section {
     align-items: flex-start;
   }
 
-  .guide-tab {
-    padding: 16px;
-    gap: 16px;
+  .guide-card {
+    padding: 24px;
+    gap: 20px;
   }
 
-  .tab-number {
-    font-size: 1.25rem;
+  .guide-card-number {
+    font-size: 1.5rem;
   }
 
-  .tab-text h3 {
-    font-size: 1rem;
+  .guide-card-title-group h3 {
+    font-size: 1.1rem;
     margin-bottom: 4px;
   }
 
-  .tab-text p {
+  .guide-card-title-group p {
     font-size: 0.8rem;
+  }
+
+  .app-simulator {
+    height: 320px;
   }
 }
