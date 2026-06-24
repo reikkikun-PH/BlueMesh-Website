@@ -207,6 +207,26 @@ body {
   -moz-user-select: none;
 }
 
+/* Smooth theme transition for page elements */
+body,
+#navbar,
+.nav-links,
+.nav-logo,
+.nav-logo span,
+.theme-toggle-btn,
+.btn,
+.feature-card,
+.step,
+.guide-card,
+.tech-card,
+.tech-item,
+.download-box,
+.download-card,
+.node,
+h1, h2, h3, h4, p, a, span, svg, li {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease, stroke 0.4s ease, fill 0.4s ease;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1599,6 +1619,8 @@ section {
 
 .theme-toggle-btn svg {
   position: absolute;
+  top: 8px;
+  left: 8px;
   width: 20px;
   height: 20px;
   fill: none;
