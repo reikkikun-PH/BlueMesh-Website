@@ -46,7 +46,34 @@ for (var i = 0; i < animatedElements.length; i++) {
   observer.observe(animatedElements[i]);
 }
 
-/* --- Smooth Scrolling --- */
+/* --- Smooth Slow Scrolling --- */
+function slowScrollTo(targetPosition, duration) {
+  var startPosition = window.pageYOffset || document.documentElement.scrollTop;
+  var distance = targetPosition - startPosition;
+  var startTime = null;
+
+  function easeInOutCubic(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t * t + b;
+    t -= 2;
+    return c / 2 * (t * t * t + 2) + b;
+  }
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    var timeElapsed = currentTime - startTime;
+    var run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      window.scrollTo(0, targetPosition);
+    }
+  }
+
+  requestAnimationFrame(animation);
+}
+
 var anchorLinks = document.querySelectorAll('a[href^="#"]');
 
 for (var i = 0; i < anchorLinks.length; i++) {
@@ -69,10 +96,8 @@ for (var i = 0; i < anchorLinks.length; i++) {
     var navbarHeight = document.getElementById('navbar').offsetHeight;
     var targetPosition = targetElement.offsetTop - navbarHeight - 20;
 
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
+    // Scroll slowly over 1400ms
+    slowScrollTo(targetPosition, 1400);
   });
 }
 
