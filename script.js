@@ -138,10 +138,10 @@ function fetchLatestRelease() {
         downloadUrl = 'https://github.com/' + repo + '/releases/download/' + tagName + '/BlueMesh-' + tagName + '.apk';
       }
 
-      // Update download card href
+      // Update download card href attribute via data-download-url
       var downloadCard = document.getElementById('download-android');
       if (downloadCard && downloadUrl) {
-        downloadCard.setAttribute('href', downloadUrl);
+        downloadCard.setAttribute('data-download-url', downloadUrl);
       }
 
       // Update download badge version tag
@@ -156,9 +156,22 @@ function fetchLatestRelease() {
     });
 }
 
+function setupDownloadHandler() {
+  var downloadCard = document.getElementById('download-android');
+  if (downloadCard) {
+    downloadCard.addEventListener('click', function () {
+      var url = this.getAttribute('data-download-url');
+      if (url) {
+        window.location.href = url;
+      }
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   fetchLatestRelease();
   initThemeToggle();
+  setupDownloadHandler();
 });
 
 /* --- Theme Toggle System --- */
